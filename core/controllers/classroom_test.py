@@ -214,6 +214,7 @@ class ClassroomAdminTests(test_utils.GenericTestBase):
         self.signup(self.CURRICULUM_ADMIN_EMAIL, self.CURRICULUM_ADMIN_USERNAME)
         self.set_curriculum_admins([self.CURRICULUM_ADMIN_USERNAME])
 
+
         self.physics_classroom_id = (
             classroom_config_services.get_new_classroom_id())
         self.physics_classroom_dict: classroom_config_domain.ClassroomDict = {
@@ -276,7 +277,33 @@ class ClassroomAdminTests(test_utils.GenericTestBase):
 
     def test_get_unused_topics(self) -> None:
         self.login(self.CURRICULUM_ADMIN_EMAIL, is_super_admin=True)
-        unused_topics = {}
+        self.save_new_topic(
+            'unused_topic_1', self.get_user_id_from_email(self.CURRICULUM_ADMIN_EMAIL))
+        unused_topics = [
+            {
+                "id": "unused_topic_1",
+                "name": "topic",
+                "abbreviated_name": "topic",
+                "url_fragment": "topic",
+                "thumbnail_filename": "topic.svg",
+                "thumbnail_bg_color": "#C6DCDA",
+                "thumbnail_size_in_bytes": 21131,
+                "description": "description",
+                "canonical_story_references": [],
+                "additional_story_references": [],
+                "uncategorized_skill_ids": [],
+                "subtopics": [],
+                "subtopic_schema_version": 4,
+                "next_subtopic_id": 0,
+                "language_code": "en",
+                "version": 1,
+                "story_reference_schema_version": 1,
+                "meta_tag_content": "topic meta tag content",
+                "practice_tab_is_displayed": False,
+                "page_title_fragment_for_web": "topic page title",
+                "skill_ids_for_diagnostic_test": []
+            }
+        ]
         json_response = self.get_json(feconf.UNUSED_TOPICS_HANDLER_URL)
         self.assertEqual(
             json_response['unused_topics'],
