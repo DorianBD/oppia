@@ -172,6 +172,7 @@ class ClassroomAdminDataHandler(
         })
         self.render_json(self.values)
 
+
 class UnusedTopicsHandler(base.BaseHandler[Dict[str, str], Dict[str, str]]):
     """Handler for fetching topics not associated with any classroom."""
 
@@ -189,7 +190,8 @@ class UnusedTopicsHandler(base.BaseHandler[Dict[str, str], Dict[str, str]]):
         topics_not_in_classroom = [
             topic.to_dict() for topic in all_topics
             if not any(
-                topic.id in list(classroom.topic_id_to_prerequisite_topic_ids.keys())
+                topic.id in
+                list(classroom.topic_id_to_prerequisite_topic_ids.keys())
                 for classroom in all_classrooms
             )
         ]
