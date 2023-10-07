@@ -188,7 +188,10 @@ class UnusedTopicsHandler(base.BaseHandler[Dict[str, str], Dict[str, str]]):
 
         topics_not_in_classroom = [
             topic.to_dict() for topic in all_topics
-            if not any(topic.id in list(classroom.topic_id_to_prerequisite_topic_ids.keys()) for classroom in all_classrooms)
+            if not any(
+                topic.id in list(classroom.topic_id_to_prerequisite_topic_ids.keys())
+                for classroom in all_classrooms
+            )
         ]
 
         self.render_json({'unused_topics': topics_not_in_classroom})
