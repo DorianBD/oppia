@@ -277,8 +277,10 @@ class ClassroomAdminTests(test_utils.GenericTestBase):
     def test_get_unused_topics(self) -> None:
         self.login(self.CURRICULUM_ADMIN_EMAIL, is_super_admin=True)
 
-        unused_topic_1 = self.save_new_topic('unused_topic_1',
-            self.get_user_id_from_email(self.CURRICULUM_ADMIN_EMAIL));
+        unused_topic_1 = self.save_new_topic(
+            'unused_topic_1',
+            self.get_user_id_from_email(self.CURRICULUM_ADMIN_EMAIL)
+        )
 
         unused_topics = [ unused_topic_1.to_dict()]
 
