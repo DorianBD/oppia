@@ -214,7 +214,6 @@ class ClassroomAdminTests(test_utils.GenericTestBase):
         self.signup(self.CURRICULUM_ADMIN_EMAIL, self.CURRICULUM_ADMIN_USERNAME)
         self.set_curriculum_admins([self.CURRICULUM_ADMIN_USERNAME])
 
-
         self.physics_classroom_id = (
             classroom_config_services.get_new_classroom_id())
         self.physics_classroom_dict: classroom_config_domain.ClassroomDict = {
@@ -280,7 +279,7 @@ class ClassroomAdminTests(test_utils.GenericTestBase):
 
         unused_topic_1 = self.save_new_topic('unused_topic_1',
             self.get_user_id_from_email(self.CURRICULUM_ADMIN_EMAIL))
-        
+
         unused_topics = [ unused_topic_1.to_dict()]
 
         json_response = self.get_json(feconf.UNUSED_TOPICS_HANDLER_URL)
