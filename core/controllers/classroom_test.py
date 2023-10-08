@@ -282,7 +282,7 @@ class ClassroomAdminTests(test_utils.GenericTestBase):
             self.get_user_id_from_email(self.CURRICULUM_ADMIN_EMAIL)
         )
 
-        unused_topics = [ unused_topic_1.to_dict()]
+        unused_topics = [unused_topic_1.to_dict()]
 
         json_response = self.get_json(feconf.UNUSED_TOPICS_HANDLER_URL)
 
